@@ -1,5 +1,5 @@
 const aws = require('aws-sdk')
-const {BUCKET,awsConfig} = require('../utils/aws')
+const {BUCKET,awsConfig} = require('../util/aws')
 
 awsConfig()
 
@@ -91,6 +91,44 @@ exports.delFile = async(file)=>{
       console.error('Error deleting file:', err);
     } else {
       console.log('File deleted successfully:', data);
+    }
+  });
+}
+
+exports.createFolder = async(name)=>{
+    const params = {
+        Bucket: BUCKET,
+        Key: name
+      };
+
+s3.putObject(params, function(err, data) {
+    if (err) {
+      console.error("Error creating folder: ", err);
+    } else {
+      console.log("Folder created successfully.");
+    }
+  });
+}
+
+exports.deleteFolder = async(name)=>{
+
+const params = {
+    Bucket: BUCKET,
+    Delete: {
+      Objects: [
+        {
+          Key: name,
+        },
+      ],
+      Quiet: false, 
+    },
+  };
+  
+  s3.deleteObjects(params, (err, data) => {
+    if (err) {
+      console.log('Error deleting folder:', err);
+    } else {
+      console.log('Successfully deleted folder:', data);
     }
   });
 }

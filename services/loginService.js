@@ -23,3 +23,15 @@ exports.login = async(username)=>{
         return null;
     }
 }
+
+exports.getUsers = async()=>{
+    try
+{
+    let savedUser = await loginDataDB.find();
+    return savedUser;
+    }
+    catch(e)
+    {
+        return null;
+    }
+}

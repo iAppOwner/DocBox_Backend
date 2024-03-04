@@ -1,10 +1,10 @@
 const loginDataToDB = require("../services/loginService");
 const aw = require("../util/asyncErrorHandler")
+const {createFolder} = require('../services/awsService')
 
 exports.login = aw(async(req,res)=>{
     let body = req.body.loginDetails;
     let serviceResponse = {};
-    console.log(body)
     let savedData = await loginDataToDB.login(body.username);
     if(savedData.length)
     {
@@ -22,6 +22,7 @@ exports.login = aw(async(req,res)=>{
             message : "Wrong Username or Password",
         } 
     }
+
  res.send(serviceResponse)
 })
 

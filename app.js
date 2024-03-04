@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const appRoute = require('./router/saveRoute')
+const docRoute = require('./router/docRoute')
+const boardRoute = require('./router/dashboardRoute')
 const db_connection = require("./modal/connection")
 
 const port = process.env.PORT;
@@ -17,6 +19,8 @@ db_connection()
 
 //ROUTER CONFIGURATION
 app.use("/api",appRoute)
+app.use("/board",boardRoute)
+app.use("/doc",docRoute)
 
 app.listen(port,()=>{
     console.log(`APP RUNNING ON PORT ${port}`)
