@@ -6,7 +6,6 @@ exports.login = aw(async(req,res)=>{
     let serviceResponse = {};
     console.log(body)
     let savedData = await loginDataToDB.login(body.username);
-  console.log(savedData.length)
     if(savedData.length)
     {
         serviceResponse = {

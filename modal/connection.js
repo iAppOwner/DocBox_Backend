@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
+require('dotenv').config() 
 
 async function dbConnection()
 { 
-    let uri = "mongodb://localhost:27017/docbox"
-    // || "mongodb://localhost:27017/docbox"
+    let uri = process.env.MONGODB_URI 
     try{
         await mongoose.connect(uri,{
             useNewUrlParser: true,

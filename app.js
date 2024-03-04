@@ -4,7 +4,7 @@ const cors = require('cors')
 const appRoute = require('./router/saveRoute')
 const db_connection = require("./modal/connection")
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT;
 
 require('dotenv').config()
 
