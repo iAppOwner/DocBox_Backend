@@ -132,3 +132,25 @@ const params = {
     }
   });
 }
+
+exports.download = async(file)=>{
+  
+  try {
+    const bucketName = BUCKET;
+    const key = file; 
+
+   
+    const signedUrl = await s3.getSignedUrlPromise('getObject', {
+      Bucket: bucketName,
+      Key: key,
+      Expires: 3600 
+    });
+  
+    return signedUrl;
+  } catch (error) {
+    console.error('Error:', error);
+   return null;
+  }
+
+
+}

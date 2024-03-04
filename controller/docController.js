@@ -1,6 +1,7 @@
 const aw = require("../util/asyncErrorHandler")
-const {createFolder, deleteFolder} = require('../services/awsService')
+const {createFolder, del} = require('../services/awsService')
 const {saveBox,deleteBox, getBox} = require('../services/boxService')
+const file = require("../services/fileService");
 
 exports.create = aw(async(req,res)=>{
     let body = req.body;
@@ -45,8 +46,9 @@ exports.delete = aw(async(req,res)=>{
 
     if(docName)
     {
+        file.deleteAllFile(docName)
         deleteBox(docName)
-        deleteFolder(`${docName}/`)
+        del(`${docName}/`)
         serviceResponse = {
             status : 200,
             message : "DOC BOX DELETED SUCCESSFULLY",

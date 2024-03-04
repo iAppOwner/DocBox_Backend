@@ -1,6 +1,5 @@
 const loginDataToDB = require("../services/loginService");
 const aw = require("../util/asyncErrorHandler")
-const {createFolder} = require('../services/awsService')
 
 exports.login = aw(async(req,res)=>{
     let body = req.body.loginDetails;
